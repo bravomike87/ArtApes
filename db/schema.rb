@@ -12,8 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_05_20_222233) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "artworks", force: :cascade do |t|
     t.string "title"
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_222233) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_artworks_on_user_id"
   end
+
 
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
@@ -55,5 +58,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_222233) do
   end
 
   add_foreign_key "artworks", "users"
+
   add_foreign_key "profiles", "users"
+
 end

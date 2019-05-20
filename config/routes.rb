@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'pages#home'
   get 'user/:id/dashboard', to: 'pages#dashboard'
   get 'contact', to: 'pages#contact'

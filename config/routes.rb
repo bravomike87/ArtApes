@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'artworks/index'
+  get 'artworks/show'
+  get 'artworks/new'
+  get 'artworks/edit'
   get 'profiles/show'
   get 'profiles/new'
   get 'profiles/edit'

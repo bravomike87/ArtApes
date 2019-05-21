@@ -1,14 +1,23 @@
-<h1>Artpiece <%= @artwork.title %></h1>
+<%= link_to "<-- Back to all artwork list", artworks_path, :class => "btn btn-secondary" %>
+<div class="container">
+  <div class="row">
 
-<ul>
-    <li> Title: <%= @artwork.title %></li>
-    <li> Description: <%= @artwork.description %></li>
-    <li> Image: <%= @artwork.image %></li>
-    <li> Kind: <%= @artwork.kind %></li>
-    <li> Price: <%= @artwork.price %></li>
-    <li> Width: <%= @artwork.width %></li>
-    <li> Height: <%= @artwork.height %></li>
-    <li> Tagline: <%= @artwork.tagline %></li>
-</ul>
+    <div>
+      <h1><%= @artwork.title %></h1>
+      <p><%= @artwork.tagline %></p>
+      <p> Kind: <%= @artwork.kind %></p>
+      <p> Width: <%= @artwork.width %></p>
+      <p> Height: <%= @artwork.height %></p>
+    </div>
 
-<%= link_to "Back to artwork list", artworks_path %>
+    <%= image_tag @artwork.image, alt: "image", width: 200 %>
+  </div>
+
+  <div class="row">
+    <p><%= @artwork.description %></p>
+    <p> - <%=  @artwork.price %> €/day</p>
+  </div>
+  <div class="row">
+    <%= link_to "Book now", artwork_bookings_path(@artwork), method: :post, :class => "btn btn-primary"  %>
+  </div>
+</div>

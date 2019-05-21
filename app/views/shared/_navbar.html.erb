@@ -7,10 +7,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+        <%= form_tag artworks_path, method: :get, :class => "form-inline" do %>
+          <%= text_field_tag :search,
+            params[:search],
+            class: "form-control",
+            placeholder: "Find a artwork"
+          %>
+          <%= submit_tag 'Search', class: "btn btn-primary"%>
+        <% end %>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>

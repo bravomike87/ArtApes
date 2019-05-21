@@ -1,5 +1,16 @@
-<h1>Artworks#index</h1>
+<h1>Artworks list</h1>
 
 <p>Display the list of artworks</p>
 
-<%= link_to "click on one artwork", artwork_path(1)  %>
+<% if params[:search] %>
+  <p>Your search for : <%= params[:search] %></p>
+<% else %>
+  <p>All art pieces avaliables</p>
+<% end %>
+
+<ul>
+  <% @artworks_filter.each do |artwork| %>
+  <li><%= link_to artwork.title, artwork %></li>
+  <% end %>
+</ul>
+

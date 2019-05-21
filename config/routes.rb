@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'bookings/new'
+  devise_for :users
+
+  # get 'bookings/new'
   root to: 'pages#home'
   get 'user/:id/dashboard', to: 'pages#dashboard'
   get 'contact', to: 'pages#contact'

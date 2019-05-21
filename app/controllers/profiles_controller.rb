@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
   def show
+    @profile = Profile.find(params[:id])
   end
 
   def new
@@ -10,6 +11,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @profile = Profile.find(params[:id])
   end
 
   def update

@@ -1,4 +1,14 @@
-<h1>Artworks#edit</h1>
-<p>Find me in app/views/artworks/edit.html.erb</p>
+<h1>Edit your artwork</h1>
 
-<h2> <%= params[:id] %></h2>
+<%= simple_form_for(@artwork) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :image %>
+    <%= f.input :kind %>
+    <%= f.input :price %>
+    <%= f.input :width %>
+    <%= f.input :height %>
+    <%= f.input :tagline %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
+<% end %>

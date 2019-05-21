@@ -11,4 +11,6 @@
 
 <%= link_to "Display all Artworks", artworks_path %>
 
+<% if policy(Artwork).create? %>
 <%= link_to "Create a piece of art", new_artwork_path %>
+<% end %>

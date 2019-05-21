@@ -25,14 +25,15 @@ class ProfilesController < ApplicationController
 
   def destroy
     @profile = Profile.find(params[:id])
+    @user = @profile.user
     @profile.destroy
-    redirect_to Something_path
+    @user.destroy
   end
 
   private
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :address, :avatar)
+    params.require(:profile).permit(:first_name, :last_name, :address, :description, :avatar)
   end
-  
+
 end

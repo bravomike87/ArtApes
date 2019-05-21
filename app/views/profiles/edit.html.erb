@@ -4,8 +4,9 @@
     <%= f.input :last_name %>
     <%= "Email: (not changeable) #{@profile.user.email}" %>
     <%= f.input :address %>
-    <%# <%= f.input :avatar %>
+    <%= f.input :description %>
+    <%#= f.input :avatar %>
     <%#= f.input :avatar_cache. as :hidden %>
     <%= f.submit "Save", class: "btn btn-primary" %>
-
+    <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
 <% end %>

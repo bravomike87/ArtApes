@@ -5,6 +5,9 @@
     <div>
       <h1><%= @artwork.title %></h1>
       <p><%= @artwork.tagline %></p>
+      <p> Kind: <%= @artwork.kind %></p>
+      <p> Width: <%= @artwork.width %></p>
+      <p> Height: <%= @artwork.height %></p>
     </div>
 
     <%= image_tag @artwork.image, alt: "image", width: 200 %>
@@ -18,5 +21,3 @@
     <%= link_to "Book now", artwork_bookings_path(@artwork), method: :post, :class => "btn btn-primary"  %>
   </div>
 </div>
-
-

@@ -11,9 +11,17 @@ class ArtworksController < ApplicationController
   end
 
   def new
+    @artwork = Artwork.new
   end
 
   def create
+    @artwork = Artwork.new(artwork_params)
+    @artwork.user = current_user
+    if @artwork.save
+      redirect_to artwork_path(@artwork)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -23,5 +31,11 @@ class ArtworksController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def artwork_params
+    params.require(:artwork).permit(:title, :description, :image, :kind, :price, :width, :height, :tagline)
   end
 end

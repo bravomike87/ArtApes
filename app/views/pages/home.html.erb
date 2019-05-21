@@ -1,13 +1,6 @@
 <h1>Landing page</h1>
 
-<%= form_tag artworks_path, method: :get do %>
-  <%= text_field_tag :search,
-    params[:search],
-    class: "form-control",
-    placeholder: "Find a artwork"
-  %>
-  <%= submit_tag 'Search', class: "btn btn-primary"%>
-<% end %>
+<%= render 'shared/search_bar' %>
 
 <%= link_to "Display all Artworks", artworks_path %>
 

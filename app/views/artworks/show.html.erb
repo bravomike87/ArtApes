@@ -1,5 +1,14 @@
-<h1>Artworks n° <%= params[:id] %> - show page</h1>
+<h1>Artpiece <%= @artwork.title %></h1>
 
-<p>we will find here all details of a specific artwork</p>
+<ul>
+    <li> Title: <%= @artwork.title %></li>
+    <li> Description: <%= @artwork.description %></li>
+    <li> Image: <%= @artwork.image %></li>
+    <li> Kind: <%= @artwork.kind %></li>
+    <li> Price: <%= @artwork.price %></li>
+    <li> Width: <%= @artwork.width %></li>
+    <li> Height: <%= @artwork.height %></li>
+    <li> Tagline: <%= @artwork.tagline %></li>
+</ul>
 
 <%= link_to "Back to artwork list", artworks_path %>

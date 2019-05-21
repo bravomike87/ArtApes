@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    @profile
   end
 
   def destroy

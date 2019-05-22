@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
-
   def show
     @profile = Profile.find(params[:id])
+    authorize @profile
   end
 
   def new
@@ -12,10 +12,12 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find(params[:id])
+    authorize @profile
   end
 
   def update
     @profile = Profile.find(params[:id])
+    authorize @profile
     if @profile.update(profile_params)
       redirect_to profile_path(@profile)
     else
@@ -24,10 +26,6 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    @profile = Profile.find(params[:id])
-    @user = @profile.user
-    @profile.destroy
-    @user.destroy
   end
 
   private

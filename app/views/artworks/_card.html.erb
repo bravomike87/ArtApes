@@ -1,14 +1,16 @@
-<div class="col-md-3">
-  <%= link_to artwork do %>
-
-  <div class="card-category my-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= artwork.image %>')">
-    <%= artwork.title %>
+<%= link_to artwork, class: "card-artwork" do %>
+  <div class="card-trip">
+    <img src='<%= artwork.image %>'>
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= artwork.title %></h2>
+        <p><%= artwork.tagline %></p>
+      </div>
+      <h2 class="card-trip-pricing">€<%= artwork.price %></h2>
+      <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-trip-user avatar-bordered"/>
+    </div>
   </div>
+<% end %>
 
-  <% end %>
-  <%#= link_to "Show it!", cocktail_path(cocktail) %>
 
-  <%# cocktail.tags.each do |tag| %>
-    <!-- <span>#<%#= tag.name %></span> -->
-  <%# end %>
-</div>
+

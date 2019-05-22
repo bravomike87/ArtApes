@@ -12,13 +12,29 @@ class ArtworksController < ApplicationController
       @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
     end
 
+    @artworks_filter_with_gps = @artworks_filter.reject { |x| x.user.profile.latitude.nil? }
 
-    # @artworks_filter = policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")
+    @markers = @artworks_filter_with_gps.map do |artwork|
+      {
+        lat: artwork.user.profile.latitude,
+        lng: artwork.user.profile.longitude,
+        # this is not working for I don't know which reason !
+        # infoWindow: render_to_string(partial: "infowindow", locals: { artwork: artwork })
+      }
+    end
   end
 
   def show
     @artwork = Artwork.find(params[:id])
     authorize @artwork
+
+    if @artwork.user.profile.latitude
+      @markers = [{
+          lat: @artwork.user.profile.latitude,
+          lng: @artwork.user.profile.longitude
+        }]
+    end
+
   end
 
   def new

@@ -10,6 +10,5 @@ class PagesController < ApplicationController
   end
 
   def about
-    @test = Artwork.first
   end
 end

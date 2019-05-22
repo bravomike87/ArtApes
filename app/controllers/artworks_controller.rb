@@ -2,13 +2,23 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @artworks = policy_scope(Artwork).order(created_at: :desc)
+    # @artworks = policy_scope(Artwork).order(created_at: :desc)
     @artworks_filter = policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")
+
+
   end
 
   def show
     @artwork = Artwork.find(params[:id])
     authorize @artwork
+
+    if @artwork.user.profile.latitude
+      @markers = [{
+          lat: @artwork.user.profile.latitude,
+          lng: @artwork.user.profile.longitude
+        }]
+    end
+
   end
 
   def new

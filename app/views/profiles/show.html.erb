@@ -7,4 +7,9 @@
     <li> Address: <%= @profile.address %></li>
     <%# <li> <%= @profile.avatar %>
 </ul>
-<%= link_to "Edit", edit_profile_path(@profile) %>
+
+<div class="row">
+  <% if policy(@profile).edit? %>
+    <%= link_to "Edit", edit_profile_path(@profile), :class => "btn btn-primary"  %>
+  <% end %>
+</div>

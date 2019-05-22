@@ -1,4 +1,4 @@
-class ArtworkPolicy < ApplicationPolicy
+class ProfilePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -9,23 +9,11 @@ class ArtworkPolicy < ApplicationPolicy
     true
   end
 
-  def create?
-    true
-  end
-
-  def new?
-    true
-  end
-
   def edit?
     record.user == user
   end
 
   def update?
-    record.user == user
-  end
-
-  def destroy?
     record.user == user
   end
 end

@@ -29,8 +29,8 @@
   </div>
 
   <div class="row">
-    <% if policy(@artwork).edit? %>
-      <%= link_to "Delete", edit_artwork_path(@artwork), :class => "btn btn-primary"  %>
+    <% if policy(@artwork).destroy? %>
+      <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %>
     <% end %>
   </div>
 

@@ -2,8 +2,18 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @artworks = policy_scope(Artwork).order(created_at: :desc)
-    @artworks_filter = policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")
+    # why did we need that line ?? So I comment it, to be deleted (Agathe)
+    # @artworks = policy_scope(Artwork).order(created_at: :desc)
+
+    if params[:search].present?
+      sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
+      @artworks_filter = policy_scope(Artwork).where(sql_query, query: "%#{params[:search]}%")
+    else
+      @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
+    end
+
+
+    # @artworks_filter = policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")
   end
 
   def show

@@ -1,17 +1,17 @@
-<h1>Artworks list</h1>
-
-<p>Display the list of artworks</p>
-
-<% if params[:search] %>
-  <p>Your search for : <%= params[:search] %></p>
-<% else %>
-  <p>All art pieces availables</p>
-<% end %>
-
 <div class="container">
-  <div class="">
-    <div class="row">
-      <%= render partial: 'card', collection: @artworks_filter, as: :artwork %>
+  <h1 class="pt-5 text-center">Art just for you!</h1>
+  <div class="pt-2 pb-5 text-center">
+  <% if params[:search] %>
+    <h2>Here's your search for : <%= params[:search] %></h2>
+  <% else %>
+    <h2>Here's what we have</h2>
+  <% end %>
+  </div>
+
+
+  <div class="container">
+    <div class="cards pb-5">
+        <%= render partial: 'card', collection: @artworks_filter, as: :artwork %>
     </div>
   </div>
 </div>

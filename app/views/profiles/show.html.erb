@@ -21,3 +21,11 @@
     <li> <%= booking.artwork.title  %> <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %> </li>
   <% end %>
 </ol>
+
+<h2>Requests on my Arts</h2>
+<ol>
+  <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
+  <% my_artworks_with_bookings.each do |artwork| %>
+    <li> <%= artwork.title %>  </li>
+  <% end %>
+</ol>

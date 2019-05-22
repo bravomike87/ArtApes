@@ -1,7 +1,30 @@
-<h1>Landing page</h1>
+<section>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://s3.eu-central-1.amazonaws.com/dennis.work/assets/monkey_image2.jpg');">
+    <div class="container">
+        <h1 class="text-center">ArtApe. Rent your piece of art.</h1>
+        <h2 class="text-center">We bring you the world’s best art right to your living room.</h2>
+        <div class="centered">
+          <%= form_tag artworks_path, method: :get, :class => "form-inline" do %>
+          <%= text_field_tag :search,
+              params[:search],
+              class: "search-landing form-control",
+              placeholder: "Find a artwork"%>
+          <%= submit_tag 'Search', class: "p-3 button-yellow button-landing btn btn-primary"%>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="p-5">
+    <h2 class="text-center mb-4">Are you a collector and want to make some money?</h2>
+    <div class="centered">
+      <%= link_to "Create a piece of art", new_artwork_path, class: "p-3 button-yellow btn btn-primary" %>
+    </div>
 
-<%= render 'shared/search_bar' %>
+</div>
+</section>
+
 
 <%= link_to "Display all Artworks", artworks_path %>
 
-<%= link_to "Create a piece of art", new_artwork_path %>

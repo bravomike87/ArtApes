@@ -1,1 +1,14 @@
 // Specific CSS for your home-page
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.centered h1{
+  font-size: 48px;
+  text-align: center;
+}
+
+.centered a {
+ font-size: 24px;
+}

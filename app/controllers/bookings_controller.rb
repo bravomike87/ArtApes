@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
     @artwork = Artwork.find(params[:artwork_id])
     authorize @booking
     if @booking.save
-      redirect_to artworks_path
+      redirect_to profile_path(@current_user)
     else
       render :new
     end
@@ -16,8 +16,12 @@ class BookingsController < ApplicationController
   # end
 
   def destroy
-
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.destroy
+    redirect_to profile_path(current_user)
   end
+
 end
 
 

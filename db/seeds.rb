@@ -7,8 +7,12 @@ Artwork.destroy_all
 Profile.destroy_all
 User.destroy_all
 
+puts 'Creating admin User and associated Profile...'
 
-puts 'Creating 15 fake Users and associated Profiles, Artworks and Bookings ...'
+user = User.create!(email: 'admin@artapes.com', password: 'topsecret', password_confirmation: 'topsecret')
+Profile.create!(first_name: 'admin_first', last_name: 'admin_last', user: user)
+
+puts 'Creating 20 fake Users and associated Profiles, Artworks and Bookings ...'
 
 index = 0
 20.times do
@@ -22,3 +26,12 @@ end
 
 puts 'Finished!'
 
+
+# for images in seed_images :
+# curl http://lorempixel.com/400/400/abstract/5/ > db/seed_images/seed_img_5.jpg
+# images upload in cloudinary
+# index = 0
+# 5.times do
+#   index += 1
+#   Cloudinary::Uploader.upload("db/seed_images/seed_img_#{index}.jpg")
+# end

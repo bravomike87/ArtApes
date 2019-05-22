@@ -2,7 +2,7 @@
   background-size: cover;
   background-position: center;
   padding: 130px;
-  height: 60vh
+  height: 100vh;
 }
 
 .banner h1 {
@@ -19,8 +19,8 @@
   color: white;
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-up(md) {
   .banner{
-    height: 60vh;
+    height: 80vh;
   }
 }

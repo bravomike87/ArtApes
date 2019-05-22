@@ -1,10 +1,9 @@
 class ArtworksController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # @artworks_filter = Artwork.where("description like ?", "%#{params[:search]}%")
     @artworks = policy_scope(Artwork).order(created_at: :desc)
-    # authorize @artwork
+    @artworks_filter = policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")
   end
 
   def show

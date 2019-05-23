@@ -5,7 +5,7 @@
       <%= link_to "Back to all artwork", artworks_path, :class => "mb-3 btn bg-transparent text-primary pl-0" %>
       <h1><%= @artwork.title %></h1>
       <h3><%= @artwork.tagline %></h3>
-      <div class="d-flex">
+      <div class="d-flex" style="margin-bottom: 24px;">
         <% if policy(@artwork).edit? %>
           <%= link_to "Edit Artwork", edit_artwork_path(@artwork), :class => "pl-0 btn bg-transparent text-secondary mr-3"  %>
         <% end %>
@@ -18,6 +18,17 @@
         <p><%= @artwork.description %></p>
       </div>
 
+      <div class="artwork-description">
+        <h3>Price per day<h3>
+        <h3 style="color: red;">EUR <%=  @artwork.price %></h3>
+      </div>
+
+
+
+
+      <% if @artwork.user != current_user %>
+          <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "mt-5 btn btn-primary" %>
+      <% end %>
     </div>
 
     <div class="col-12 col-lg-8" >
@@ -27,61 +38,35 @@
         <% end %>
       </div>
     </div>
-    <div>
-
-    </div>
-
-
   </div>
 
+  <div class="row mt-5">
 
+    <div class="col-12 col-lg-4" >
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="row">
-
-    <p> - <%=  @artwork.price %> €/day</p>
-
-
-
-      <p> Kind: <%= @artwork.kind %></p>
-      <p> Size <%= @artwork.width %>cm x <%= @artwork.height %>cm</p>
-  </div>
-
-  <div class="row">
-    <% if @artwork.user != current_user %>
-    <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "btn btn-primary"  %>
+    <% if @markers %>
+      <div
+        id="map"
+        style="width: 100%;
+        height: 300px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     <% end %>
+   </div>
+
+    <div class="col-12 col-lg-8">
+      <div class="artwork-description" style="margin-top: 0px;">
+        <h3>Artwork type<h3>
+        <p><%= @artwork.kind %></p>
+      </div>
+      <div class="artwork-description">
+        <h3>Object size<h3>
+        <p><%= @artwork.width %>cm x <%= @artwork.height %>cm</p>
+      </div>
+      <div class="artwork-description">
+        <h3>Location<h3>
+        <p><%= @artwork.user.profile.address %></p>
+      </div>
+    </div>
   </div>
-
-
-
-  <!-- Will display a map on the show page only if address a present -->
-  <% if @markers %>
-    <div
-      id="map"
-      style="width: 100%;
-      height: 300px;"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-    ></div>
-  <% end %>
-
-</div>

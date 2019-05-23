@@ -1,1 +1,27 @@
-<h1>Haloo</h1>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <%= render 'shared/navigation' %>
+    </div>
+    <div class="col-12 col-lg-10">
+      <h1>All my Artworks:</h1>
+      <% current_user.artworks.each do |artwork| %>
+        <%= link_to artwork, class: "card-artwork" do %>
+          <div class="card-trip">
+            <img src='<%= artwork.image %>'>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= artwork.title %></h2>
+                  <p><%= artwork.tagline %></p>
+                </div>
+                <h2 class="card-trip-pricing" style="font-weight: 500">€<%= artwork.price %></h2>
+              </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

@@ -16,4 +16,17 @@ class ProfilePolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def bookings?
+    record.user == user
+  end
+
+  def artworks?
+    record.user == user
+  end
+
+  def requests?
+    record.user == user
+  end
+
 end

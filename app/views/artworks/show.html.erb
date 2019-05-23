@@ -20,11 +20,8 @@
 
       <div class="artwork-description">
         <h3>Price per day<h3>
-        <h3 style="color: red;">EUR <%=  @artwork.price %></h3>
+        <p>EUR <%=  @artwork.price %></p>
       </div>
-
-
-
 
       <% if @artwork.user != current_user %>
           <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "mt-5 btn btn-primary" %>
@@ -40,7 +37,7 @@
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row my-5">
 
     <div class="col-12 col-lg-4" >
 
@@ -70,3 +67,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -1,7 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-dark bg-primary navbar-lewagon" style="padding-left: 24px; padding-right: 24px">
+<div class="navbar navbar-expand-sm navbar-dark bg-primary navbar-lewagon sticky-top" style="padding-left: 24px; padding-right: 24px">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "MonaLeasing-Logo.png" %>
+    <%= image_tag "MonaLeasing-Logo2.png" %>
     <% end %>
+
+
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,10 +18,14 @@
            <%= render 'shared/search_bar' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Offer your Art", new_artwork_path, class: "nav-link mx-3" %>
+          <%= link_to "Offer your Art", new_artwork_path,
+            class: "btn bg-transparent text-white nav-link mx-3 px-3",
+            style: "border: 2px solid white; height: 42px"
+
+           %>
         </li>
         <li class="nav-item">
-          <%= link_to "All Artwork", artworks_path, class: "nav-link mx-3" %>
+          <%= link_to "All Artwork", artworks_path, class: "btn bg-transparent text-white nav-link mx-3 px-3" %>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.profile.avatar? %>

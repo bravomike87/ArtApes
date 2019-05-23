@@ -1,15 +1,27 @@
-<h1>Create a new piece of art</h1>
+<div class="pt-5 container">
 
-<%= simple_form_for(@artwork) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :image %>
-    <%= f.input :image_cache, as: :hidden %>
-    <%= f.input :kind %>
-    <%= f.input :price %>
-    <%= f.input :width %>
-    <%= f.input :height %>
-    <%= f.input :tagline %>
-    <%= f.submit "Create", class: "btn btn-primary" %>
-    <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
-<% end %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <h2>Upload your artwork</h2>
+        <div class="form-inputs">
+
+          <%= simple_form_for(@artwork) do |f| %>
+              <%= f.input :title %>
+              <%= f.input :tagline %>
+              <%= f.input :description %>
+              <%= f.input :image %>
+              <%= f.input :image_cache, as: :hidden %>
+              <%= f.input :kind %>
+              <%= f.input :price %>
+              <%= f.input :width %>
+              <%= f.input :height %>
+
+            <div class="form-actions">
+              <%= f.submit "Create", class: "btn btn-primary mb-5" %>
+            </div>
+              <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

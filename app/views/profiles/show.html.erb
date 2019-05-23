@@ -26,6 +26,10 @@
 <ol>
   <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
   <% my_artworks_with_bookings.each do |artwork| %>
-    <li> <%= artwork.title %>  </li>
+    <li> <%= artwork.title %>
+      <% artwork.bookings.each do |booking| %>
+        <%=  booking.status %> Request from <%= booking.user.email %>
+      <% end %>
+    </li>
   <% end %>
 </ol>

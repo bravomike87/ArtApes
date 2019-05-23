@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
 
   def create
     # to do : catch the POST request with artwork_id and create a booking
-    @booking = Booking.new(artwork_id: params[:artwork_id], user_id: current_user.id, start_date: params[:booking][:start_date], end_date: params[:booking][:end_date])
+    @booking = Booking.new(status: "action needed", artwork_id: params[:artwork_id], user_id: current_user.id, start_date: params[:booking][:start_date], end_date: params[:booking][:end_date])
     @artwork = Artwork.find(params[:artwork_id])
     authorize @booking
     if @booking.save

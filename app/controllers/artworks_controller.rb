@@ -18,8 +18,8 @@ class ArtworksController < ApplicationController
       {
         lat: artwork.user.profile.latitude,
         lng: artwork.user.profile.longitude,
-        # this is not working for I don't know which reason !
-        # infoWindow: render_to_string(partial: "infowindow", locals: { artwork: artwork })
+        # to make that work : create a _infowindow partial into views/artworks !!!
+        infoWindow: render_to_string(partial: "infowindow", locals: { artwork: artwork })
       }
     end
   end
@@ -31,7 +31,9 @@ class ArtworksController < ApplicationController
     if @artwork.user.profile.latitude
       @markers = [{
           lat: @artwork.user.profile.latitude,
-          lng: @artwork.user.profile.longitude
+          lng: @artwork.user.profile.longitude,
+          # to make that work : create a _infowindow partial into views/artworks !!!
+          infoWindow: render_to_string(partial: "infowindow_show", locals: { artwork: @artwork })
         }]
     end
 

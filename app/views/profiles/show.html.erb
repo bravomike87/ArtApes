@@ -18,7 +18,7 @@
 <h2>My Bookings</h2>
 <ol>
   <% @current_user.bookings.each do |booking| %>
-    <li> <%= booking.artwork.title  %> <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %> </li>
+    <li> <%= booking.artwork.title  %> from <%= booking.start_date %> until <%= booking.end_date %><%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %> </li>
   <% end %>
 </ol>
 
@@ -26,6 +26,10 @@
 <ol>
   <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
   <% my_artworks_with_bookings.each do |artwork| %>
-    <li> <%= artwork.title %>  </li>
+    <li> <%= artwork.title %>
+      <% artwork.bookings.each do |booking| %>
+        <%=  booking.status %> Request from <%= booking.user.email %>
+      <% end %>
+    </li>
   <% end %>
 </ol>

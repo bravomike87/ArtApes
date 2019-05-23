@@ -3,27 +3,23 @@ class ArtworksController < ApplicationController
 
   def index
 
-    if params[:search].present?
-      sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
-      @artworks_filter = policy_scope(Artwork).where(sql_query, query: "%#{params[:search]}%")
-    elsif params[:search_location].present?
-      @location = params[:search_location]
+    if params[:search].present? && !params[:search_location].present?
+      # first case : only the search by keyword
+      @artworks_filter = search_by_keyword(params[:search])
 
-      # @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
-      if params[:search_location_radius] != ""
-        radius = params[:search_location_radius]
-      else
-        radius = 5
-      end
-      @profiles_by_location = policy_scope(Profile).near("%#{params[:search_location]}%", radius)
+    elsif !params[:search].present? && params[:search_location].present?
+      # second case : only by location
+      @artworks_filter = search_by_location(params[:search_location], params[:search_location_radius])
 
-      @artworks_filter = []
-      @profiles_by_location.each do |profile|
-        profile.user.artworks.each { |e| @artworks_filter << e }
+    elsif params[:search].present? && params[:search_location].present?
+      # third case : both location and keyword
+      @artworks_filter_by_keyword = search_by_keyword(params[:search])
+      @artworks_filter_by_location = search_by_location(params[:search_location], params[:search_location_radius])
 
-      end
+      @artworks_filter = @artworks_filter_by_keyword & @artworks_filter_by_location
 
     else
+      # no search criterias : render everything !
       @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
     end
 
@@ -39,7 +35,6 @@ class ArtworksController < ApplicationController
       }
     end
     ### end markers
-
   end
 
   def show
@@ -99,5 +94,23 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:title, :description, :image, :kind, :price, :width, :height, :tagline)
+  end
+
+  def search_by_keyword(keyword)
+    sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
+    return policy_scope(Artwork).where(sql_query, query: "%#{keyword}%")
+  end
+
+  def search_by_location(location, radius)
+    radius = 5 if radius == ""
+
+    profiles_by_location = policy_scope(Profile).near("%#{location}%", radius)
+
+    artworks_filter = []
+    profiles_by_location.each do |profile|
+      profile.user.artworks.each { |e| artworks_filter << e }
+    end
+
+    return artworks_filter
   end
 end

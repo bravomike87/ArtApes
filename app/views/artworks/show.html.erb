@@ -1,40 +1,71 @@
-<%= link_to "<-- Back to all artwork list", artworks_path, :class => "btn btn-secondary" %>
-<div class="container">
-  <div class="row">
 
-    <div>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-4">
+      <%= link_to "Back to all artwork", artworks_path, :class => "mb-3 btn bg-transparent text-primary pl-0" %>
       <h1><%= @artwork.title %></h1>
-      <p><%= @artwork.tagline %></p>
-      <p> Kind: <%= @artwork.kind %></p>
-      <p> Width: <%= @artwork.width %></p>
-      <p> Height: <%= @artwork.height %></p>
+      <h3><%= @artwork.tagline %></h3>
+      <div class="d-flex">
+        <% if policy(@artwork).edit? %>
+          <%= link_to "Edit", edit_artwork_path(@artwork), :class => "pl-0 btn bg-transparent text-secondary mr-3"  %>
+        <% end %>
+        <% if policy(@artwork).destroy? %>
+          <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn bg-transparent text-secondary ml-3"  %>
+        <% end %>
+
+      </div>
     </div>
 
-    <% if @artwork.image? %>
-      <%= cl_image_tag @artwork.image, height: 300, width: 400, crop: :fill %>
-    <% end %>
+    <div class="col-12 col-lg-8" >
+      <div class="artist-img-box">
+        <% if @artwork.image? %>
+          <%= cl_image_tag @artwork.image, class: "artwork-img" %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+
+    </div>
+
+
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <div class="row">
     <p><%= @artwork.description %></p>
     <p> - <%=  @artwork.price %> €/day</p>
+
+
+
+      <p> Kind: <%= @artwork.kind %></p>
+      <p> Size <%= @artwork.width %>cm x <%= @artwork.height %>cm</p>
   </div>
 
   <div class="row">
     <%= link_to "Book now", artwork_bookings_path(@artwork), method: :post, :class => "btn btn-primary"  %>
   </div>
 
-  <div class="row">
-    <% if policy(@artwork).edit? %>
-      <%= link_to "Edit", edit_artwork_path(@artwork), :class => "btn btn-primary"  %>
-    <% end %>
-  </div>
 
-  <div class="row">
-    <% if policy(@artwork).destroy? %>
-      <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %>
-    <% end %>
-  </div>
 
   <!-- Will display a map on the show page only if address a present -->
   <% if @markers %>

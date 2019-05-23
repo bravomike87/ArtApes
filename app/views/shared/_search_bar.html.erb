@@ -1,8 +1,8 @@
 <%= form_tag artworks_path, method: :get, :class => "form-inline" do %>
   <%= text_field_tag :search,
     params[:search],
-    class: "form-control",
+    class: "form-control search-navbar ml-3",
     placeholder: "Find a piece of art"
   %>
-  <%= submit_tag 'Search', class: "button-yellow btn btn-primary"%>
+  <%= submit_tag 'Search', class: "searchbutton-navbar button-yellow btn btn-primary mr-3"%>
 <% end %>

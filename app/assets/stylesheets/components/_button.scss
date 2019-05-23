@@ -1,14 +1,37 @@
 .button-yellow {
   color: white;
+  border: 2px solid white;
 }
 
-.button-landing {
+.searchbutton-landing {
   font-size: 24px;
   padding: 32px;
+  height: 68px;
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid $yellow;
 }
 
 .search-landing {
   font-size: 24px;
   padding: 32px;
+  height: 68px;
+  border-radius: 4px 0px 0px 4px;
+  border: 2px solid white;
 
+}
+
+.search-navbar {
+  border: 2px solid white;
+  height: 40px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.searchbutton-navbar {
+  border: 2px solid white;
+  height: 40px;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.button-whiteoutline {
+  border: 2px solid white;
 }

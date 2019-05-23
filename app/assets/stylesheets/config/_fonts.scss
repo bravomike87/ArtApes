@@ -2,15 +2,21 @@
 // @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 
 // Define fonts for body and headers
-$body-font: "-apple-system", "system-ui", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
-$headers-font: "-apple-system", "system-ui", "BlinkMacSystemFont","Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
+$body-font: "Graphik", "-apple-system", "system-ui", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
+$headers-font: "Graphik", "-apple-system", "system-ui", "BlinkMacSystemFont","Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+@font-face {
+  font-family: "Graphik";
+  src: font-url('Graphik-Regular.eot');
+  src: font-url('Graphik-Regular?#iefix') format('embedded-opentype'),
+       font-url('Graphik-Regular.woff') format('woff'),
+       // font-url('Graphik-Regular.ttf') format('truetype')
+       ;
+  src: font-url('Graphik-Medium.eot');
+  src: font-url('Graphik-Medium?#iefix') format('embedded-opentype'),
+       font-url('Graphik-Medium.woff') format('woff'),
+       // font-url('Graphik-Medium.ttf') format('truetype')
+
+}
+$my-font: "Graphik";

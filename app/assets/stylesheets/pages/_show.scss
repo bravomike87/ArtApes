@@ -1,0 +1,32 @@
+.artwork-img {
+  max-width: 100%;
+  display: flex;
+  object-fit: cover;
+  // object-position: 50% 50%;
+    min-width: 100%;
+    max-height: 100%;
+}
+
+.artwork-img-box {
+  flex-grow: 0;
+  height: 50vh;
+  // overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artwork-description {
+  margin-top: 40px;
+}
+
+.artwork-description h3 {
+  font-weight: medium;
+  font-size: 16px;
+}
+
+.artwork-description p {
+  font-weight: normal;
+  font-size: 16px;
+
+}

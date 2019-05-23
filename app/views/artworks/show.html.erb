@@ -7,17 +7,21 @@
       <h3><%= @artwork.tagline %></h3>
       <div class="d-flex">
         <% if policy(@artwork).edit? %>
-          <%= link_to "Edit", edit_artwork_path(@artwork), :class => "pl-0 btn bg-transparent text-secondary mr-3"  %>
+          <%= link_to "Edit Artwork", edit_artwork_path(@artwork), :class => "pl-0 btn bg-transparent text-secondary mr-3"  %>
         <% end %>
         <% if policy(@artwork).destroy? %>
-          <%= link_to "Delete", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn bg-transparent text-secondary ml-3"  %>
+          <%= link_to "Delete Artwork", artwork_path(@artwork), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn bg-transparent text-secondary ml-3"  %>
         <% end %>
-
       </div>
+      <div class="artwork-description">
+        <h3>Description<h3>
+        <p><%= @artwork.description %></p>
+      </div>
+
     </div>
 
     <div class="col-12 col-lg-8" >
-      <div class="artist-img-box">
+      <div class="artwork-img-box">
         <% if @artwork.image? %>
           <%= cl_image_tag @artwork.image, class: "artwork-img" %>
         <% end %>
@@ -52,7 +56,7 @@
 
 
   <div class="row">
-    <p><%= @artwork.description %></p>
+
     <p> - <%=  @artwork.price %> €/day</p>
 
 

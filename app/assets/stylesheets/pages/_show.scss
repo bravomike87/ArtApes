@@ -7,11 +7,26 @@
     max-height: 100%;
 }
 
-.artist-img-box {
+.artwork-img-box {
   flex-grow: 0;
   height: 50vh;
   // overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.artwork-description {
+  margin-top: 40px;
+}
+
+.artwork-description h3 {
+  font-weight: medium;
+  font-size: 16px;
+}
+
+.artwork-description p {
+  font-weight: normal;
+  font-size: 16px;
+
 }

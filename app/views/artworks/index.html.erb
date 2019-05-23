@@ -8,40 +8,49 @@
   <% end %>
   </div>
 
-  <div class="container my-3 ">
-
-    <div class="card-trip bg-primary">
-
-      <p>Search :</p>
-          <div class=" py-3">
-            <p>Search by keyword</p>
-            <%= render 'shared/search_bar' %>
-            <p>Search by location/ :</p>
-
-            <%= form_tag artworks_path, method: :get, :class => "form-inline" do %>
-              <%= search_field_tag :search_location,
-                params[:search_location],
-                class: "form-control search-navbar ml-3",
-                placeholder: "Location"
-              %>
-              <%= number_field_tag :search_location_radius,
-                params[:search_location_radius],
-                in: 0..100,
-                class: "form-control search-navbar ml-3",
-                placeholder: "Distance (in km)"
-              %>
-<!--               <%= range_field_tag :search_slider,
-                params[:search_slider],
-                in: 0..100,
-                class: "form-control search-navbar ml-3",
-                placeholder: "Distance (in km)"
-              %> -->
-              <%= submit_tag 'Search', class: "searchbutton-navbar button-yellow btn btn-primary mr-3"%>
-
-            <% end %>
-
-
+<div class="container my-3 ">
+    <div class="row", style="display:flex; justify-content: space-between; align-items:flex-end">
+      <div class="col-12 col-md-3">
+          <%= form_tag artworks_path, method: :get do %>
+            <div class="mx-3">
+              <p style="font-weight: 500; font-size: 16px">Keyword</p>
+              <%= search_field_tag :search,
+                  params[:search],
+                  class: "form-control search-navbar",
+                  style: "height: 48px; border-radius: 4px;",
+                  placeholder: "Keyword"
+                %>
+            </div>
         </div>
+        <div class="col-12 col-md-3">
+          <div class="mx-3">
+            <p style="font-weight: 500">Location</p>
+            <%= text_field_tag :search_location,
+              params[:search_location],
+              class: "form-control search-navbar",
+              style: "height: 48px",
+              placeholder: "Location"
+            %>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="mx-3">
+            <p style="font-weight: 500">Distance</p>
+            <%= number_field_tag :search_location_radius,
+              params[:search_location_radius],
+              in: 0..100,
+              class: "form-control search-navbar",
+              style: "height: 48px; border-radius: 4px;",
+              placeholder: "Distance (in km)"
+            %>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <%= submit_tag 'Search',
+              class: "searchbutton-navbar button-yellow btn btn-primary mr-3",
+              style: "height: 48px; border-radius: 4px;"%>
+        </div>
+      <% end %>
     </div>
   </div>
 

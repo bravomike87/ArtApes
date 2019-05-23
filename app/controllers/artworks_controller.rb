@@ -10,10 +10,14 @@ class ArtworksController < ApplicationController
       @location = params[:search_location]
 
       # @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
+      if params[:search_location_radius] != ""
+        radius = params[:search_location_radius]
+      else
+        radius = 5
+      end
+      @profiles_by_location = policy_scope(Profile).near("%#{params[:search_location]}%", radius)
 
-      @profiles_by_location = policy_scope(Profile).near("%#{params[:search_location]}%", 10)
       @artworks_filter = []
-
       @profiles_by_location.each do |profile|
         profile.user.artworks.each { |e| @artworks_filter << e }
 

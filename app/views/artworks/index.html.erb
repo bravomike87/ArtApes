@@ -1,10 +1,10 @@
 <div class="container">
   <h1 class="pt-5 text-center">Art just for you!</h1>
   <div class="pt-2 pb-5 text-center">
-  <% if params[:search] %>
+  <% if params[:search] && params[:search] != "" %>
     <h2>Here's your search for : <%= params[:search] %></h2>
   <% else %>
-    <h2>Here's what we have</h2>
+    <h2>Here's all what we have</h2>
   <% end %>
   </div>
 
@@ -15,3 +15,14 @@
     </div>
   </div>
 </div>
+
+  <!-- Will display a map on the show page only if address a present -->
+  <% if @markers %>
+    <div
+      id="map"
+      style="width: 100%;
+      height: 300px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+  <% end %>

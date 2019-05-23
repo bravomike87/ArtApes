@@ -16,7 +16,13 @@
            <%= render 'shared/search_bar' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Offer your Art", new_artwork_path, class: "nav-link mx-3" %>
+          <% if current_user.nil? %>
+            <%= link_to "Offer your Art", new_user_registration_path, class: "nav-link mx-3" %>
+          <% elsif current_user.profile.last_name.nil?  && current_user.profile.address.nil?   %>
+            <%= link_to "Offer your Art", edit_profile_path(current_user.profile), class: "nav-link mx-3" %>
+          <% else %>
+            <%= link_to "Offer your Art", new_artwork_path, class: "nav-link mx-3" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "All Artwork", artworks_path, class: "nav-link mx-3" %>

@@ -57,6 +57,7 @@ class ArtworksController < ApplicationController
 
   def edit
     @artwork = Artwork.find(params[:id])
+    session[:return_to] ||= request.referer
     authorize @artwork
   end
 

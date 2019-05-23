@@ -20,7 +20,11 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     authorize @profile
     if @profile.update(profile_params)
-      redirect_to session.delete(:return_to)
+      if (session[:return_to] == "http://localhost:3000/") || (session[:return_to] == "https://mona-leasing.herokuapp.com")
+        redirect_to new_artwork_path
+      else
+        redirect_to session.delete(:return_to)
+      end
     else
       render :edit
     end

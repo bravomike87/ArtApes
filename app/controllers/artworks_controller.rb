@@ -2,16 +2,28 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # why did we need that line ?? So I comment it, to be deleted (Agathe)
-    # @artworks = policy_scope(Artwork).order(created_at: :desc)
 
     if params[:search].present?
       sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
       @artworks_filter = policy_scope(Artwork).where(sql_query, query: "%#{params[:search]}%")
+    elsif params[:search_location].present?
+      @location = params[:search_location]
+
+      # @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
+
+      @profiles_by_location = policy_scope(Profile).near("%#{params[:search_location]}%", 10)
+      @artworks_filter = []
+
+      @profiles_by_location.each do |profile|
+        profile.user.artworks.each { |e| @artworks_filter << e }
+
+      end
+
     else
       @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
     end
 
+    #### to display the markers on the map for thoses with address
     @artworks_filter_with_gps = @artworks_filter.reject { |x| x.user.profile.latitude.nil? }
 
     @markers = @artworks_filter_with_gps.map do |artwork|
@@ -22,6 +34,8 @@ class ArtworksController < ApplicationController
         infoWindow: render_to_string(partial: "infowindow", locals: { artwork: artwork })
       }
     end
+    ### end markers
+
   end
 
   def show

@@ -28,33 +28,8 @@
       </div>
     </div>
     <div>
-
     </div>
-
-
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="row">
 
     <p> - <%=  @artwork.price %> €/day</p>
@@ -67,11 +42,13 @@
 
   <div class="row">
     <% if @artwork.user != current_user %>
-    <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "btn btn-primary"  %>
+      <% if current_user.profile.last_name.nil?  && current_user.profile.address.nil?   %>
+        <%= link_to "Book now", edit_profile_path(current_user.profile), :class => "btn btn-primary"  %>
+      <% else %>
+        <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "btn btn-primary"  %>
+      <% end %>
     <% end %>
   </div>
-
-
 
   <!-- Will display a map on the show page only if address a present -->
   <% if @markers %>

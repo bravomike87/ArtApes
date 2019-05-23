@@ -30,11 +30,21 @@ class ProfilesController < ApplicationController
   end
 
   def artworks
-    @artworks = current_user.artworks
+    @profile = current_user.profile
+    @artworks = policy_scope(Artwork.all) #policy_scope(current_user.artworks)
+    authorize @profile
   end
 
   def requests
+    @profile = current_user.profile
+    @artworks = policy_scope(Artwork.all) #policy_scope(current_user.artworks)
+    authorize @profile
+  end
 
+  def bookings
+    @profile = current_user.profile
+    @artworks = policy_scope(Artwork.all) #policy_scope(current_user.artworks)
+    authorize @profile
   end
 
   private

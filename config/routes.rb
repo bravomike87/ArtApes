@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   # get 'bookings/new'
   root to: 'pages#home'
-  get 'profiles/:id/artworks', to: 'profiles#artworks'
-  get 'profiles/:id/requests', to: 'profiles#requests'
+  get 'profiles/:id/artworks', to: 'profiles#artworks', as: :profile_artworks
+  get 'profiles/:id/requests', to: 'profiles#requests', as: :profile_requests
+  get 'profiles/:id/bookings', to: 'profiles#bookings', as: :profile_bookings
 
   get 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'

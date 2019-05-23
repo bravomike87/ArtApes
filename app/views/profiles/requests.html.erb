@@ -1,11 +1,30 @@
-<h1>hello</h1>
-<ol>
-  <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
-  <% my_artworks_with_bookings.each do |artwork| %>
-    <li> <%= artwork.title %>
-      <% artwork.bookings.each do |booking| %>
-        <%=  booking.status %> Request from <%= booking.user.email %>
-      <% end %>
-    </li>
-  <% end %>
-</ol>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <%= render 'shared/navigation' %>
+    </div>
+    <div class="col-12 col-lg-10">
+      <h1>All my Requests:</h1>
+      <ol>
+        <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
+        <% if my_artworks_with_bookings.empty? %>
+          <h3> You have no Requests</h3>
+        <% else %>
+          <% my_artworks_with_bookings.each do |artwork| %>
+            <li> <%= artwork.title %>
+              <% artwork.bookings.each do |booking| %>
+                <%=  booking.status %> Request from <%= booking.user.email %>
+              <% end %>
+            </li>
+          <% end %>
+        <%  end %>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

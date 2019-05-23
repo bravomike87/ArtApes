@@ -6,4 +6,5 @@ class Artwork < ApplicationRecord
   validates :description, presence: true
   validates :kind, presence: true
   validates :price, presence: true
+  validates :tagline, presence: true, length: { minimum: 4 }
 end

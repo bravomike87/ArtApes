@@ -1,5 +1,5 @@
 <%= form_tag artworks_path, method: :get, :class => "form-inline" do %>
-  <%= text_field_tag :search,
+  <%= search_field_tag :search,
     params[:search],
     class: "form-control search-navbar ml-3",
     style: "height: 42px",

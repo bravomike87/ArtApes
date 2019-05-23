@@ -7,4 +7,12 @@ const initAutocomplete = () => {
   }
 };
 
+const initAutocompleteLocation = () => {
+  const searchLocationInput = document.getElementById('search_location');
+  if (searchLocationInput) {
+    places({ container: searchLocationInput });
+  }
+};
+
 export { initAutocomplete };
+export { initAutocompleteLocation };

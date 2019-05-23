@@ -1,12 +1,35 @@
-<h1>Hello <%= @profile.first_name %></h1>
+<div class="container">
 
-<ul>
-    <li> First name: <%= @profile.first_name %></li>
-    <li> Last name: <%= @profile.last_name %></li>
-    <li> Email: <%= @profile.user.email %></li>
-    <li> Address: <%= @profile.address %></li>
-    <%# <li> <%= @profile.avatar %>
-</ul>
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <%= render 'shared/navigation' %>
+    </div>
+    <div class="col-12 col-lg-10">
+      <h1>Hello <%= @profile.first_name %></h1>
+        <ul>
+            <li> First name: <%= @profile.first_name %></li>
+            <li> Last name: <%= @profile.last_name %></li>
+            <li> Email: <%= @profile.user.email %></li>
+            <li> Address: <%= @profile.address %></li>
+            <%# <li> <%= @profile.avatar %>
+        </ul>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<section id="1">
+
+
+
+
+
+</section>
 
 <div class="row">
   <% if policy(@profile).edit? %>

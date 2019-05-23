@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # get 'bookings/new'
   root to: 'pages#home'
-  get 'user/:id/dashboard', to: 'pages#dashboard'
+  get 'profiles/:id/artworks', to: 'profiles#artworks'
+  get 'profiles/:id/requests', to: 'profiles#requests'
+
   get 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

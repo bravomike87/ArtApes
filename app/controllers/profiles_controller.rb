@@ -29,6 +29,14 @@ class ProfilesController < ApplicationController
   def destroy
   end
 
+  def artworks
+    @artworks = current_user.artworks
+  end
+
+  def requests
+
+  end
+
   private
 
   def profile_params

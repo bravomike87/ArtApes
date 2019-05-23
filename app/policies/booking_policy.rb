@@ -6,7 +6,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.artwork.user != user
   end
 
   def destroy?
@@ -14,7 +14,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    create?
   end
 
 

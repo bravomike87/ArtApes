@@ -23,9 +23,13 @@
         <p>EUR <%=  @artwork.price %></p>
       </div>
 
-      <% if @artwork.user != current_user %>
-          <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "mt-5 btn btn-primary" %>
+     <% if @artwork.user != current_user %>
+      <% if current_user.profile.last_name.nil?  && current_user.profile.address.nil?   %>
+        <%= link_to "Book now", edit_profile_path(current_user.profile), :class => "btn btn-primary"  %>
+      <% else %>
+        <%= link_to "Book now", new_artwork_booking_path(@artwork), :class => "btn btn-primary"  %>
       <% end %>
+    <% end %>
     </div>
 
     <div class="col-12 col-lg-8" >
@@ -35,6 +39,7 @@
         <% end %>
       </div>
     </div>
+
   </div>
 
   <div class="row my-5">

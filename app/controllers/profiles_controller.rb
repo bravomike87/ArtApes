@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.profile
+    session[:return_to] ||= request.referer
     authorize @profile
   end
 
@@ -19,7 +20,7 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     authorize @profile
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile)
+      redirect_to session.delete(:return_to)
     else
       render :edit
     end

@@ -1,12 +1,28 @@
-<h1>Hello <%= @profile.first_name %></h1>
-<%= simple_form_for(@profile) do |f| %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= "Email: (not changeable) #{@profile.user.email}" %>
-    <%= f.input :address %>
-    <%= f.input :description %>
-    <%= f.input :avatar %>
-    <%= f.input :avatar_cache, as: :hidden %>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-    <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
-<% end %>
+<div class="pt-5 container">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+    <h2>Hello <%= @profile.first_name %></h2>
+      <div class="mt-4 form-inputs">
+
+        <%= simple_form_for(@profile) do |f| %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <div style="padding-bottom: 8px"><%= "Email" %></div>
+            <div style="background-color: white; color: #495057; border-radius: 2px; padding: 6px 12px; margin-bottom: 16px">
+            <%= @profile.user.email %></div>
+            <%= f.input :address %>
+            <%= f.input :description %>
+            <%= f.input :avatar %>
+            <%= f.input :avatar_cache, as: :hidden %>
+
+
+            <div class="form-actions">
+              <%= f.submit "Update profile", class: "btn btn-primary mb-5" %>
+            </div>
+            <%#= link_to "Delete", root_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?"} %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>

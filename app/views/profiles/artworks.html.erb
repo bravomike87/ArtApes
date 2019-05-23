@@ -4,21 +4,23 @@
       <%= render 'shared/navigation' %>
     </div>
     <div class="col-12 col-lg-10">
-      <h1>All my Artworks:</h1>
-      <% current_user.artworks.each do |artwork| %>
-        <%= link_to artwork, class: "card-artwork" do %>
-          <div class="card-trip">
-            <img src='<%= artwork.image %>'>
-              <div class="card-trip-infos">
-                <div>
-                  <h2><%= artwork.title %></h2>
-                  <p><%= artwork.tagline %></p>
+      <h1 style="font-size: 32px; padding-bottom: 16px">My artwork</h1>
+      <div class="cards pb-5">
+        <% current_user.artworks.each do |artwork| %>
+          <%= link_to artwork, class: "card-artwork" do %>
+            <div class="card-trip">
+              <img src='<%= artwork.image %>'>
+                <div class="card-trip-infos">
+                  <div>
+                    <h2><%= artwork.title %></h2>
+                    <p><%= artwork.tagline %></p>
+                  </div>
+                  <h2 class="card-trip-pricing" style="font-weight: 500">€<%= artwork.price %></h2>
                 </div>
-                <h2 class="card-trip-pricing" style="font-weight: 500">€<%= artwork.price %></h2>
-              </div>
-          </div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

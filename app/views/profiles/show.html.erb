@@ -4,55 +4,34 @@
     <div class="col-12 col-lg-2">
       <%= render 'shared/navigation' %>
     </div>
-    <div class="col-12 col-lg-10">
-      <h1>Hello <%= @profile.first_name %></h1>
-        <ul>
-            <li> First name: <%= @profile.first_name %></li>
-            <li> Last name: <%= @profile.last_name %></li>
-            <li> Email: <%= @profile.user.email %></li>
-            <li> Address: <%= @profile.address %></li>
-            <%# <li> <%= @profile.avatar %>
-        </ul>
+    <div class="col-12 col-lg-6">
+      <h1 style="font-size: 32px">Hello, <%= @profile.first_name %>!</h1>
+        <div class="profile-description">
+        <p>First name</p>
+        <h3> <%=  @profile.first_name %> </h3>
+        <p>Last name</p>
+        <h3> <%= @profile.last_name %></h3>
+        <p>Email</p>
+        <h3><%= @profile.user.email %></h3>
+        <p>Address</p>
+        <h3><%= @profile.address %></h3>
+        <p>Description</p>
+        <h3><%= @profile.description %></h3>
+        <% if policy(@profile).edit? %>
+          <%= link_to "Edit my profile", edit_profile_path(@profile), :class => "btn btn-primary px-5 my-5"  %>
+        <% end %>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+
+<div class="artwork-img-box">
+        <% if @profile.avatar? %>
+          <%= cl_image_tag @profile.avatar,
+          class: "artwork-img",
+          style: "border-radius: 4px; filter: drop-shadow(0px 4px 4px #b7b7b7)"; %>
+        <% end %>
+      </div>
+
     </div>
   </div>
-
-
-
-
-
-
-
-
-<section id="1">
-
-
-
-
-
-</section>
-
-<div class="row">
-  <% if policy(@profile).edit? %>
-    <%= link_to "Edit", edit_profile_path(@profile), :class => "btn btn-primary"  %>
-  <% end %>
 </div>
-
-
-<h2>My Bookings</h2>
-<ol>
-  <% @current_user.bookings.each do |booking| %>
-    <li> <%= booking.artwork.title  %> from <%= booking.start_date %> until <%= booking.end_date %><%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } , :class => "btn btn-primary"  %> </li>
-  <% end %>
-</ol>
-
-<h2>Requests on my Arts</h2>
-<ol>
-  <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
-  <% my_artworks_with_bookings.each do |artwork| %>
-    <li> <%= artwork.title %>
-      <% artwork.bookings.each do |booking| %>
-        <%=  booking.status %> Request from <%= booking.user.email %>
-      <% end %>
-    </li>
-  <% end %>
-</ol>

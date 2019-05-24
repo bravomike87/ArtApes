@@ -38,7 +38,7 @@
               <p style="margin-top: 16px; margin-bottom: 0px">from <%= booking.start_date %></p>
                 <p style="margin: 8px 0px">until <%= booking.end_date %></p>
 
-              <%= link_to "Cancel booking", profile_bookings_path(booking), method: :delete, data: { confirm: "Are you sure?" } ,
+              <%= link_to "Cancel booking", booking_path(booking), method: :delete, #data: { confirm: "Are you sure?" },
                   class: "pl-0 btn bg-transparent text-secondary mr-3",
                   style: "margin-top: 24px"  %>
               </div>

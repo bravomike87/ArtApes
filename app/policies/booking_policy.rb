@@ -25,6 +25,4 @@ class BookingPolicy < ApplicationPolicy
     record.artwork.user == user
   end
 
-
-
 end

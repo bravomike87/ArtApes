@@ -36,11 +36,10 @@ index = 0
   profile.save
   sleep(1.2) # needed for geocode API
 
-  art = Artwork.create!(kind: Faker::Quote.singular_siegler, title: Faker::Games::Pokemon.name, description: Faker::Quote.most_interesting_man_in_the_world, tagline: Faker::Games::Pokemon.move, price: "#{index * 10}", width: 20, height: 10, user: user)
-
+  art = Artwork.new(kind: Faker::Quote.singular_siegler, title: Faker::Games::Pokemon.name, description: Faker::Quote.most_interesting_man_in_the_world, tagline: Faker::Games::Pokemon.move, price: "#{index * 10}", width: 20, height: 10, user: user)
   url = "http://lorempixel.com/400/400/abstract/#{index}"
   art.remote_image_url = url
-  art.save
+  art.save!
 
   # Booking.create!(status: "available", artwork: art, user: user)
 end

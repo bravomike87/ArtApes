@@ -12,6 +12,7 @@
           <%= f.input :start_date, as: :date, html5: true %>
           <%= f.input :end_date, as: :date, html5: true %>
           <%= f.submit "Send Request",
+            data: { confirm: "Are you sure?" },
             class: "btn btn-primary",
             style: "margin-top: 24px; width: 100%" %>
       <% end %>

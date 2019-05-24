@@ -20,7 +20,14 @@ class ArtworksController < ApplicationController
 
     else
       # no search criterias : render everything !
-      @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
+      @artworks_filter = grab_all
+    end
+
+    if @artworks_filter == []
+      @search_result_success = false
+      @artworks_filter = grab_all
+    else
+      @search_result_success = true
     end
 
     #### to display the markers on the map for thoses with address
@@ -94,6 +101,10 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:title, :description, :image, :kind, :price, :width, :height, :tagline)
+  end
+
+  def grab_all
+    policy_scope(Artwork).order(created_at: :desc)
   end
 
   def search_by_keyword(keyword)

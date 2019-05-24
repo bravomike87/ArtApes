@@ -15,6 +15,9 @@ class BookingsController < ApplicationController
     @booking.artwork = @artwork
     authorize @booking
     if @booking.save!
+
+      flash[:alert] = "Booking successfull"
+
       redirect_to profile_bookings_path(@current_user.profile)
     else
       render :new

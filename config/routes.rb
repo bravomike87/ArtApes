@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get 'profiles/:id/requests', to: 'profiles#requests', as: :profile_requests
   get 'profiles/:id/bookings', to: 'profiles#bookings', as: :profile_bookings
 
+  post 'bookings/:id/confirm', to: 'bookings#confirm', as: :bookings_confirm
+  post 'bookings/:id/reject', to: 'bookings#reject', as: :bookings_reject
+
+
   get 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

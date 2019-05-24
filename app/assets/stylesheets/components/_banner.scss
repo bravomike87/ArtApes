@@ -1,8 +1,8 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 130px;
-  height: 100vh;
+  padding: 130px 0 110px 0;
+  height: auto;
 }
 
 .banner h1 {
@@ -21,6 +21,6 @@
 
 @include media-breakpoint-up(md) {
   .banner{
-    height: 50vh;
+    height: auto;
   }
 }

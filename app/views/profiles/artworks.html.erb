@@ -1,7 +1,24 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-12 col-lg-2">
-      <%= render 'shared/navigation' %>
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to "My Profile", profile_path(@profile), class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Artwork", profile_artworks_path(@profile), class: "active-tab nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Bookings", profile_bookings_path(@profile), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Requests", profile_requests_path(@profile), class: "nav-link"  %>
+        </li>
+      </ul>
+
+
+
     </div>
     <div class="col-12 col-lg-10">
       <h1 style="font-size: 32px; padding-bottom: 16px">My artwork</h1>

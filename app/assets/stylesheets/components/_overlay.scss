@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  margin: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: block;
+}
+
+.modal-content {
+    width: 300px;
+    height: 300px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background-color: white;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.4;
+    background-color: white;
+    z-index: 1;
+}
+
+

@@ -1,18 +1,35 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-12 col-lg-2">
-      <%= render 'shared/navigation' %>
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to "My Profile", profile_path(@profile), class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Artwork", profile_artworks_path(@profile), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Bookings", profile_bookings_path(@profile), class: "active-tab nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Requests", profile_requests_path(@profile), class: "nav-link"  %>
+        </li>
+      </ul>
+
+
     </div>
     <div class="col-12 col-lg-10">
       <h1 style="font-size: 32px; padding-bottom: 16px">My bookings</h1>
       <div class="pb-5">
-        <% my_bookings = current_user.bookings.order! 'created_at DESC' %>
-        <% my_bookings.each do |booking| %>
+        <div>
+        <% current_user.bookings.each do |booking| %>
           <div style="display: flex; margin: 30px 0px">
             <div class="image-status">
               <%= link_to booking.artwork do %>
-                <img src='<%= booking.artwork.image %>' style="height: 220px; border-radius: 4px">
+                 <img src='<%= booking.artwork.image %>' style="height: 220px; width: 300px; object-fit: cover;border-radius: 4px">
               <% end %>
+
               <p class="top-left" style="">Status: <%=  booking.status %> </p>
             </div>
             <div class="profile-description" style="padding: 8px 0px 8px 24px">

@@ -2,16 +2,28 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # why did we need that line ?? So I comment it, to be deleted (Agathe)
-    # @artworks = policy_scope(Artwork).order(created_at: :desc)
 
-    if params[:search].present?
-      sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
-      @artworks_filter = policy_scope(Artwork).where(sql_query, query: "%#{params[:search]}%")
+    if params[:search].present? && !params[:search_location].present?
+      # first case : only the search by keyword
+      @artworks_filter = search_by_keyword(params[:search])
+
+    elsif !params[:search].present? && params[:search_location].present?
+      # second case : only by location
+      @artworks_filter = search_by_location(params[:search_location], params[:search_location_radius])
+
+    elsif params[:search].present? && params[:search_location].present?
+      # third case : both location and keyword
+      @artworks_filter_by_keyword = search_by_keyword(params[:search])
+      @artworks_filter_by_location = search_by_location(params[:search_location], params[:search_location_radius])
+
+      @artworks_filter = @artworks_filter_by_keyword & @artworks_filter_by_location
+
     else
+      # no search criterias : render everything !
       @artworks_filter = policy_scope(Artwork).order(created_at: :desc)
     end
 
+    #### to display the markers on the map for thoses with address
     @artworks_filter_with_gps = @artworks_filter.reject { |x| x.user.profile.latitude.nil? }
 
     @markers = @artworks_filter_with_gps.map do |artwork|
@@ -22,6 +34,7 @@ class ArtworksController < ApplicationController
         infoWindow: render_to_string(partial: "infowindow", locals: { artwork: artwork })
       }
     end
+    ### end markers
   end
 
   def show
@@ -82,5 +95,23 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:title, :description, :image, :kind, :price, :width, :height, :tagline)
+  end
+
+  def search_by_keyword(keyword)
+    sql_query = "description ILIKE :query OR title ILIKE :query OR tagline ILIKE :query OR kind ILIKE :query"
+    return policy_scope(Artwork).where(sql_query, query: "%#{keyword}%")
+  end
+
+  def search_by_location(location, radius)
+    radius = 5 if radius == ""
+
+    profiles_by_location = policy_scope(Profile).near("%#{location}%", radius)
+
+    artworks_filter = []
+    profiles_by_location.each do |profile|
+      profile.user.artworks.each { |e| artworks_filter << e }
+    end
+
+    return artworks_filter
   end
 end

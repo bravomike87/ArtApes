@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <%= render 'shared/navigation' %>
+    </div>
+    <div class="col-12 col-lg-10">
+      <h1 style="font-size: 32px; padding-bottom: 16px">My booking requests</h1>
+      <div class="pb-5">
+
+        <% my_artworks_with_bookings = current_user.artworks.reject { |artwork| artwork.bookings.empty?} %>
+        <% if my_artworks_with_bookings.empty? %>
+          <p style="font-size: 18px; padding-bottom: 16px">You currently have no booking requests</p>
+        <% else %>
+          <div class="pb-5">
+            <% my_artworks_with_bookings.each do |artwork| %>
+              <% artwork.bookings.each do |booking| %>
+                <div style="display: flex; margin: 30px 0px">
+                  <div class="image-status">
+                    <img src='<%= booking.artwork.image %>' style="height: 220px; border-radius: 4px">
+                    <p class="top-left" style="">Status: <%=  booking.status %> </p>
+                  </div>
+                  <div class="profile-description" style="padding: 8px 0px 8px 24px">
+                    <h3 style="font-weight: 700">Request for: <%=  booking.artwork.title %> </h3>
+                    <p style="margin: 8px 0px">Request from: <%=  booking.artwork.user.profile.first_name %> <%=  booking.artwork.user.profile.last_name %></p>
+                    <p style="margin-top: 16px; margin-bottom: 0px">from <%= booking.start_date %></p>
+                      <p style="margin: 8px 0px">until <%= booking.end_date %></p>
+                      <p style="margin: 8px 0px 16px 0px"><%=  booking.status %> Request from <%= booking.user.email %></p>
+
+                    <%= link_to "Confirm booking", booking_path(booking),
+                      class: "btn btn-primary mr-3",
+                      style: "min-width: 150px"   %>
+                    <%= link_to "Reject booking", booking_path(booking),
+                      class: "pl-0 btn bg-transparent text-secondary mr-3"  %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

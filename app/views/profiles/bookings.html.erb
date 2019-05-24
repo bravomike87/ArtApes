@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <%= render 'shared/navigation' %>
+    </div>
+    <div class="col-12 col-lg-10">
+      <h1 style="font-size: 32px; padding-bottom: 16px">My bookings</h1>
+      <div class="pb-5">
+        <% current_user.bookings.each do |booking| %>
+          <div style="display: flex; margin: 30px 0px">
+            <div class="image-status">
+              <img src='<%= booking.artwork.image %>' style="height: 220px; border-radius: 4px">
+              <p class="top-left" style="">Status: <%=  booking.status %> </p>
+            </div>
+            <div class="profile-description" style="padding: 8px 0px 8px 24px">
+              <h3 style="font-weight: 700">Title: <%=  booking.artwork.title %> </h3>
+              <p style="margin: 8px 0px">Price: <%=  booking.artwork.price %> </p>
+              <p style="margin-top: 16px; margin-bottom: 0px">from <%= booking.start_date %></p>
+                <p style="margin: 8px 0px">until <%= booking.end_date %></p>
+
+              <%= link_to "Cancel booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } ,
+                  class: "pl-0 btn bg-transparent text-secondary mr-3",
+                  style: "margin-top: 24px"  %>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

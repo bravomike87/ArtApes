@@ -51,6 +51,25 @@
   grid-gap: 16px;
 }
 
+.top-left {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: white;
+  padding: 6px 10px 6px 10px;
+  color: $yellow;
+  border-radius: 4px;
+  font-weight: 500;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.image-status {
+  position: relative;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {

@@ -1,8 +1,30 @@
-<h1>You are about to send a request for booking <%= @artwork.title %> </h1>
-<p>Please enter the dates</p>
+<div class="pt-5 container" style="min-height: 80vh">
 
-<%= simple_form_for([@artwork, @booking]) do |f| %>
-    <%= f.input :start_date, as: :date, html5: true %>
-    <%= f.input :end_date, as: :date, html5: true %>
-    <%= f.submit "Send Request", class: "btn btn-primary" %>
-<% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6 pb-5">
+
+      <h1 style="font-size: 28px; padding-top: 8px">Request a booking for <%= @artwork.title %> </h1>
+      <h2 style="font-size: 18px">You are one step from booking a great piece of art!</h2>
+      <p style="margin-top: 32px; margin-bottom: 16px">Please enter the dates</p>
+
+      <%= simple_form_for([@artwork, @booking]) do |f| %>
+          <%= f.input :start_date, as: :date, html5: true %>
+          <%= f.input :end_date, as: :date, html5: true %>
+          <%= f.submit "Send Request",
+            class: "btn btn-primary",
+            style: "margin-top: 24px; width: 100%" %>
+      <% end %>
+
+    </div>
+    <div class="col-12 col-lg-6 pb-5" >
+      <div class="artwork-img-box">
+        <% if @artwork.image? %>
+          <%= cl_image_tag @artwork.image, class: "artwork-img" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

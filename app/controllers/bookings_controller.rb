@@ -40,14 +40,11 @@ class BookingsController < ApplicationController
     redirect_to profile_requests_path(current_user.profile)
   end
 
-
-
-
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.destroy
-    redirect_to profile_path(current_user)
+    @booking.destroy!
+    redirect_to profile_bookings_path(current_user)
   end
 end
 

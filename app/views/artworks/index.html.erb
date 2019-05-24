@@ -1,50 +1,57 @@
 <div class="container">
   <h1 class="pt-5 text-center">Art just for you!</h1>
   <div class="pt-2 pb-5 text-center">
-  <% if params[:search] && params[:search] != "" %>
-    <h2>Here's your search for : <%= params[:search] %></h2>
+  <% if @search_result_status %>
+    <h2>Your selection : </h2>
   <% else %>
-    <h2>Here's all what we have</h2>
+    <h2>Here's all what we have !</h2>
   <% end %>
   </div>
 
-<div class="container" style="margin-bottom: 24px">
-  <div class="row", style="align-items:flex-end; background: #f7f0e1; padding: 20px 10px">
-    <div class="col-12 col-md-3">
-        <%= form_tag artworks_path, method: :get do %>
-            <p style="font-weight: 500; font-size: 16px; line-height: 16px; margin: 0px 0px 12px 0px ">Keyword</p>
-            <%= search_field_tag :search,
-                params[:search],
-                class: "form-control search-navbar",
-                style: "height: 48px; border-radius: 4px; width: 100%",
-                placeholder: "Keyword"
-              %>
-      </div>
+<div class="container my-3 ">
+  <%= form_tag artworks_path, method: :get do %>
+    <div class="row", style="display:flex; justify-content: space-between; align-items:flex-end">
       <div class="col-12 col-md-3">
-          <p style="font-weight: 500; font-size: 16px; line-height: 16px; margin: 0px 0px 12px 0px " >Location</p>
-          <%= text_field_tag :search_location,
-            params[:search_location],
-            class: "form-control search-navbar",
-            style: "height: 48px; border-radius: 4px; width: 100%",
-            placeholder: "Location"
-          %>
-      </div>
-      <div class="col-12 col-md-3">
-          <p style="font-weight: 500; font-size: 16px; line-height: 16px; margin: 0px 0px 12px 0px ">Distance</p>
-          <%= number_field_tag :search_location_radius,
-            params[:search_location_radius],
-            in: 0..100,
-            class: "form-control search-navbar",
-            style: "height: 48px; border-radius: 4px; width: 100%",
-            placeholder: "Distance (in km)"
-          %>
-      </div>
-      <div class="col-12 col-md-3">
-          <%= submit_tag 'Search',
-            class: "searchbutton-navbar button-yellow btn btn-primary mr-3",
-            style: "height: 48px; border-radius: 4px; width: 100%"%>
-      </div>
-    <% end %>
+        <div class="mx-3">
+          <p style="font-weight: 500; font-size: 16px">Keyword</p>
+          <%= search_field_tag :search,
+              params[:search],
+              class: "form-control search-navbar",
+              style: "height: 48px; border-radius: 4px;",
+              placeholder: "Keyword"
+            %>
+        </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="mx-3">
+            <p style="font-weight: 500">Location</p>
+            <%= text_field_tag :search_location,
+              params[:search_location],
+              class: "form-control search-navbar",
+              style: "height: 48px",
+              placeholder: "Location"
+            %>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="mx-3">
+            <p style="font-weight: 500">Distance</p>
+            <%= number_field_tag :search_location_radius,
+              params[:search_location_radius],
+              in: 0..100,
+              class: "form-control search-navbar",
+              style: "height: 48px; border-radius: 4px;",
+              placeholder: "Distance (in km)"
+            %>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <%= submit_tag 'Search',
+              class: "searchbutton-navbar button-yellow btn btn-primary mr-3",
+              style: "height: 48px; border-radius: 4px;"%>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

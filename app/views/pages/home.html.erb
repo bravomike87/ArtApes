@@ -20,9 +20,13 @@
     <div>
       <h2 class="text-center mb-4">Are you a collector and want to make some money?</h2>
       <div class="centered">
-      <%= link_to "Create a piece of art", new_artwork_path,
-        class: "p-3 searchbutton-landing btn btn-primary",
-        style: "border-radius: 4px"  %>
+        <% if current_user.nil? %>
+          <%= link_to "Offer your Art", new_user_registration_path, class: "p-3 btn btn-primary" %>
+        <% elsif current_user.profile.last_name.nil?  && current_user.profile.address.nil?   %>
+          <%= link_to "Create a piece of art", edit_profile_path(current_user.profile), class: "p-3 btn btn-primary" %>
+        <% else %>
+          <%= link_to "Create a piece of art", new_artwork_path, class: "p-3 btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
   <div class="row mt-5">
     <div class="col-12 col-lg-4">
       <!-- I am not very convinced by this return, it is a javascript history link...Their is a other way to do by creating a new route, a new methode on the controller that will be called by the button and inside this methode "redirect_back(fallback_location: root_path)" (Agathe) -->
-      <%= link_to "Back", :back, :class => "btn btn-primary" %>
+      <%= link_to "Back", :back, :class => "btn btn-primary mb-3" %>
       <h1><%= @artwork.title %></h1>
       <h3><%= @artwork.tagline %></h3>
       <div class="d-flex" style="margin-bottom: 24px;">

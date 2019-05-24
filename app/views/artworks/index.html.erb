@@ -8,7 +8,7 @@
   <% end %>
   </div>
 
-<div class="container my-3 ">
+<div class="container mt-3 mb-5">
   <%= form_tag artworks_path, method: :get do %>
     <div class="row", style="display:flex; justify-content: space-between; align-items:flex-end">
       <div class="col-12 col-md-3">
@@ -17,7 +17,7 @@
           <%= search_field_tag :search,
               params[:search],
               class: "form-control search-navbar",
-              style: "height: 48px; border-radius: 4px;",
+              style: "height: 48px; border-radius: 4px; width: 100%; box-shadow: 0 0 15px rgba(0,0,0,0.2);",
               placeholder: "Keyword"
             %>
         </div>
@@ -28,7 +28,7 @@
             <%= text_field_tag :search_location,
               params[:search_location],
               class: "form-control search-navbar",
-              style: "height: 48px",
+              style: "height: 48px; border-radius: 4px; width: 100%; box-shadow: 0 0 15px rgba(0,0,0,0.2);",
               placeholder: "Location"
             %>
           </div>
@@ -40,7 +40,7 @@
               params[:search_location_radius],
               in: 0..100,
               class: "form-control search-navbar",
-              style: "height: 48px; border-radius: 4px;",
+              style: "height: 48px; border-radius: 4px; width: 100%; box-shadow: 0 0 15px rgba(0,0,0,0.2);",
               placeholder: "Distance (in km)"
             %>
           </div>
@@ -48,7 +48,7 @@
         <div class="col-12 col-md-3">
             <%= submit_tag 'Search',
               class: "searchbutton-navbar button-yellow btn btn-primary mr-3",
-              style: "height: 48px; border-radius: 4px;"%>
+              style: "height: 48px; border-radius: 4px; width: 100%" %>
         </div>
       <% end %>
     </div>

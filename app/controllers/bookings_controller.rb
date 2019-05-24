@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.artwork = @artwork
     authorize @booking
     if @booking.save
-      redirect_to profile_path(@current_user)
+      redirect_to profile_bookings_path(current_user.profile)
     else
       render :new
     end

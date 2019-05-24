@@ -1,5 +1,20 @@
+<%= artwork.user.profile.address %> :
 <ul>
   <% artwork.user.artworks.each do |art| %>
-    <li> <%= link_to art.title , art %> </li>
+    <li>
+      <%= link_to art do%>
+
+        <img src='<%= art.image %>' style="height: 50px; border-radius: 4px">
+        <%= art.title %>
+
+      <% end %>
+    </li>
   <% end %>
 </ul>
+
+
+  <%# artwork.user.artworks.each do |art| %>
+    <!-- <li><img src='<%#= art.image %>' style="height: 50px; border-radius: 4px"> -->
+    <%#= link_to art.title , art %>
+  <!-- </li> -->
+  <%# end %>

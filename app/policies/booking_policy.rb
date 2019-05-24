@@ -17,5 +17,14 @@ class BookingPolicy < ApplicationPolicy
     create?
   end
 
+  def confirm?
+    record.artwork.user == user
+  end
+
+  def reject?
+    record.artwork.user == user
+  end
+
+
 
 end

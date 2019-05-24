@@ -24,6 +24,24 @@ class BookingsController < ApplicationController
   # def index
   #   @bookings = Booking.where("user_id == ?", "#{current_user}")
   # end
+  def confirm
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "confirmed"
+    @booking.save
+    redirect_to profile_requests_path(current_user.profile)
+  end
+
+  def reject
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "rejected"
+    @booking.save
+    redirect_to profile_requests_path(current_user.profile)
+  end
+
+
+
 
   def destroy
     @booking = Booking.find(params[:id])

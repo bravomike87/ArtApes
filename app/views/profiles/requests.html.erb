@@ -44,7 +44,7 @@
                     <p style="margin-top: 16px; margin-bottom: 0px">from <%= booking.start_date %></p>
                       <p style="margin: 8px 0px">until <%= booking.end_date %></p>
                       <p style="margin: 8px 0px 16px 0px"><%=  booking.status %> Request from <%= booking.user.email %></p>
-                    <% if booking.status != "action needed" %>
+                    <% if booking.status != "Awaiting Confirmation" %>
                       <%= link_to("Confirm", bookings_confirm_path(booking), method: :post, data: { confirm: "Are you sure?" },class: "btn btn-primary mr-3 disabled", style: "min-width: 150px") %>
                       <%= link_to("Reject", bookings_reject_path(booking), method: :post,data: { confirm: "Are you sure?" },class: "btn btn-primary mr-3 disabled", style: "min-width: 150px") %>
                     <% else %>

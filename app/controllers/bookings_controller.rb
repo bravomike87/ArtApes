@@ -31,9 +31,6 @@ class BookingsController < ApplicationController
     @booking.destroy
     redirect_to profile_path(current_user)
   end
-
 end
-
-
 
 # policy_scope(Artwork).where("description like ?", "%#{params[:search]}%")

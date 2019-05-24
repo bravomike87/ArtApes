@@ -21,14 +21,35 @@
 }
 
 .artwork-description h3 {
-  font-weight: medium;
+  font-weight: 500;
   font-size: 16px;
   line-height: 16px;
 }
 
 .artwork-description p {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 16px;
 
 }
+
+.profile-description {
+  margin: 0px 0px 0px 0px;
+}
+
+.profile-description h3 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  margin-bottom: 8px;
+}
+
+.profile-description p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 6px;
+  margin-top: 20px;
+}
+
+

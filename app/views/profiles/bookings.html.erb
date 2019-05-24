@@ -6,7 +6,8 @@
     <div class="col-12 col-lg-10">
       <h1 style="font-size: 32px; padding-bottom: 16px">My bookings</h1>
       <div class="pb-5">
-        <% current_user.bookings.each do |booking| %>
+        <% my_bookings = current_user.bookings.order! 'created_at DESC' %>
+        <% my_bookings.each do |booking| %>
           <div style="display: flex; margin: 30px 0px">
             <div class="image-status">
               <img src='<%= booking.artwork.image %>' style="height: 220px; border-radius: 4px">
